@@ -4,7 +4,7 @@
 #
 Name     : sahara
 Version  : 3.0.0
-Release  : 3
+Release  : 4
 URL      : http://tarballs.openstack.org/sahara/sahara-3.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/sahara/sahara-3.0.0.tar.gz
 Summary  : Sahara project
@@ -72,6 +72,7 @@ BuildRequires : testrepository
 BuildRequires : traceback2
 BuildRequires : unittest2
 Patch1: 0001-Add-default-conf-file.patch
+Patch2: 0002-Modify-rootwrap-location.patch
 
 %description
 OpenStack Data Processing ("Sahara") project
@@ -107,6 +108,7 @@ python components for the sahara package.
 %prep
 %setup -q -n sahara-3.0.0
 %patch1 -p1
+%patch2 -p1
 
 %build
 python2 setup.py build -b py2
