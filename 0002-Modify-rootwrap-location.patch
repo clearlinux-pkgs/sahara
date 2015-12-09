@@ -1,0 +1,26 @@
+From 3aa534a0e5210ad58b86d6ee81cf234d24d0c80f Mon Sep 17 00:00:00 2001
+From: Jose Luis Rivera Magallon <jose.luis.rivera.magallon@intel.com>
+Date: Wed, 9 Dec 2015 09:56:00 -0600
+Subject: [PATCH] Modify rootwrap location
+
+Signed-off-by: Jose Luis Rivera Magallon <jose.luis.rivera.magallon@intel.com>
+---
+ etc/sahara/rootwrap.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/etc/sahara/rootwrap.conf b/etc/sahara/rootwrap.conf
+index 547c87d..8c3aa8e 100644
+--- a/etc/sahara/rootwrap.conf
++++ b/etc/sahara/rootwrap.conf
+@@ -4,7 +4,7 @@
+ [DEFAULT]
+ # List of directories to load filter definitions from (separated by ',').
+ # These directories MUST all be only writeable by root !
+-filters_path=/etc/sahara/rootwrap.d
++filters_path=/usr/share/nova/rootwrap.d
+ 
+ # List of directories to search executables in, in case filters do not
+ # explicitely specify a full path (separated by ',')
+-- 
+2.1.0
+
