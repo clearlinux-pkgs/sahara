@@ -4,7 +4,7 @@
 #
 Name     : sahara
 Version  : 3.0.0
-Release  : 2
+Release  : 3
 URL      : http://tarballs.openstack.org/sahara/sahara-3.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/sahara/sahara-3.0.0.tar.gz
 Summary  : Sahara project
@@ -71,6 +71,7 @@ BuildRequires : tempest-lib
 BuildRequires : testrepository
 BuildRequires : traceback2
 BuildRequires : unittest2
+Patch1: 0001-Add-default-conf-file.patch
 
 %description
 OpenStack Data Processing ("Sahara") project
@@ -105,6 +106,7 @@ python components for the sahara package.
 
 %prep
 %setup -q -n sahara-3.0.0
+%patch1 -p1
 
 %build
 python2 setup.py build -b py2
@@ -138,6 +140,7 @@ python2 -tt setup.py build -b py2 install --root=%{buildroot}
 /usr/share/sahara/policy.json
 /usr/share/sahara/rootwrap.conf
 /usr/share/sahara/rootwrap.d/sahara.filters
+/usr/share/sahara/sahara.conf.sample
 /usr/share/sahara/sahara.conf.sample-basic
 /usr/share/sahara/swift.topology.sample
 
