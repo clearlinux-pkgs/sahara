@@ -1,0 +1,26 @@
+From 0d4222b7fb2e01245e80c26adf28cf1839993291 Mon Sep 17 00:00:00 2001
+From: Jose Luis Rivera Magallon <jose.luis.rivera.magallon@intel.com>
+Date: Thu, 10 Dec 2015 17:50:17 -0600
+Subject: [PATCH] Set default syslog
+
+Signed-off-by: Jose Luis Rivera Magallon <jose.luis.rivera.magallon@intel.com>
+---
+ etc/sahara/sahara.conf.sample | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/etc/sahara/sahara.conf.sample b/etc/sahara/sahara.conf.sample
+index f09e02f..bed53cd 100644
+--- a/etc/sahara/sahara.conf.sample
++++ b/etc/sahara/sahara.conf.sample
+@@ -56,7 +56,7 @@
+ # Use syslog for logging. Existing syslog format is DEPRECATED and
+ # will be changed later to honor RFC5424. This option is ignored if
+ # log_config_append is set. (boolean value)
+-#use_syslog = false
++use_syslog = true
+ 
+ # (Optional) Enables or disables syslog rfc5424 format for logging. If
+ # enabled, prefixes the MSG part of the syslog message with APP-NAME
+-- 
+2.1.0
+

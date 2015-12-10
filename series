@@ -1,2 +1,3 @@
 0001-Add-default-conf-file.patch
 0002-Modify-rootwrap-location.patch
+0003-Set-default-syslog.patch
