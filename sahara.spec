@@ -4,14 +4,18 @@
 #
 Name     : sahara
 Version  : 3.0.0
-Release  : 5
+Release  : 6
 URL      : http://tarballs.openstack.org/sahara/sahara-3.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/sahara/sahara-3.0.0.tar.gz
+Source1  : openstack-sahara-all.service
+Source2  : openstack-sahara-api.service
+Source3  : openstack-sahara-engine.service
 Summary  : Sahara project
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: sahara-bin
 Requires: sahara-python
+Requires: sahara-config
 Requires: sahara-data
 BuildRequires : Flask
 BuildRequires : PyMySQL
@@ -83,9 +87,18 @@ OpenStack Data Processing ("Sahara") project
 Summary: bin components for the sahara package.
 Group: Binaries
 Requires: sahara-data
+Requires: sahara-config
 
 %description bin
 bin components for the sahara package.
+
+
+%package config
+Summary: config components for the sahara package.
+Group: Default
+
+%description config
+config components for the sahara package.
 
 
 %package data
@@ -123,6 +136,19 @@ python3 setup.py test ||:
 %install
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot}
+mkdir -p %{buildroot}/usr/lib/systemd/system
+install -m 0644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/openstack-sahara-all.service
+install -m 0644 %{SOURCE2} %{buildroot}/usr/lib/systemd/system/openstack-sahara-api.service
+install -m 0644 %{SOURCE3} %{buildroot}/usr/lib/systemd/system/openstack-sahara-engine.service
+## make_install_append content
+install -d -m 755 %{buildroot}/usr/share/defaults/sahara/
+install -p -D -m 644 etc/sahara/*.conf %{buildroot}/usr/share/defaults/sahara/
+install -p -D -m 644 etc/sahara/*.json %{buildroot}/usr/share/defaults/sahara/
+install -p -D -m 644 etc/sahara/sahara.conf.sample %{buildroot}/usr/share/defaults/sahara/sahara.conf
+install -p -D -m 644 etc/sahara/compute.topology.sample %{buildroot}/usr/share/defaults/sahara/
+install -p -D -m 644 etc/sahara/swift.topology.sample %{buildroot}/usr/share/defaults/sahara/
+install -p -D -m 644 etc/sahara/sahara.conf.sample-basic %{buildroot}/usr/share/defaults/sahara/
+## make_install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -137,8 +163,20 @@ python2 -tt setup.py build -b py2 install --root=%{buildroot}
 /usr/bin/sahara-rootwrap
 /usr/bin/sahara-templates
 
+%files config
+%defattr(-,root,root,-)
+/usr/lib/systemd/system/openstack-sahara-all.service
+/usr/lib/systemd/system/openstack-sahara-api.service
+/usr/lib/systemd/system/openstack-sahara-engine.service
+
 %files data
 %defattr(-,root,root,-)
+/usr/share/defaults/sahara/compute.topology.sample
+/usr/share/defaults/sahara/policy.json
+/usr/share/defaults/sahara/rootwrap.conf
+/usr/share/defaults/sahara/sahara.conf
+/usr/share/defaults/sahara/sahara.conf.sample-basic
+/usr/share/defaults/sahara/swift.topology.sample
 /usr/share/sahara/README-sahara.conf.txt
 /usr/share/sahara/compute.topology.sample
 /usr/share/sahara/policy.json
