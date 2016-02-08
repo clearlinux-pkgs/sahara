@@ -1,6 +1,46 @@
 CHANGES
 =======
 
+3.0.1
+-----
+
+* Update image address CDH plugin document
+* Don't configure hadoop.tmp.dir in Spark plugin
+* Updated from global requirements
+* Add release notes for missed bugs
+* Force releasenotes warnings to be treated as errors
+* Option for disabling wait condition feature
+* Remove sharps from release notes
+* Updated from global requirements
+* Fix Spark installation fails when parsing spark-env.sh
+* Remove unneeded 'self' in plugins.cdh.v5_4_0.plugin_utils
+* Report stack_status_reason on heat failure
+* Remove unneeded volume serialization
+* Add "unreleased" release notes page
+* Support reno for release notes management
+* Fix spark workers do not start in MapR plugin
+* Make ssh timeout configurable
+* Fix of client tests in tempest
+* Fix tempest tests
+* Fixing search of devices that need to be mount
+* Fixing problem with validation of job binaries update
+* Add additional filter to volume_type check
+* Fixing event log handling during volumes mount
+* Fixing cluster creation with is_protected field
+* Missing stuff for Kafka in Ambari plugin
+* Fixing job execution creation with is_protected field
+* Add first reno-based release note
+* Changing fedora image url for grenade job
+* Fixing grenade_job
+* Updated from global requirements
+* Add -f option to formatting volumes
+* Updated from global requirements
+* Fix issue with job types in Ambari plugin
+* Updated from global requirements
+* Fix .gitreview for stable/liberty branch
+* Switch to post-versioning
+* Fixing cluster creation without auto_security_group
+
 3.0.0
 -----
 
