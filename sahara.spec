@@ -4,7 +4,7 @@
 #
 Name     : sahara
 Version  : 3.0.1
-Release  : 9
+Release  : 10
 URL      : http://tarballs.openstack.org/sahara/sahara-3.0.1.tar.gz
 Source0  : http://tarballs.openstack.org/sahara/sahara-3.0.1.tar.gz
 Source1  : sahara-all.service
