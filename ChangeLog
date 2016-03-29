@@ -1,45 +1,365 @@
 CHANGES
 =======
 
-3.0.1
+4.0.0
 -----
 
-* Update image address CDH plugin document
+* Set libext path for Oozie 4.0.1, 4.1.0
+* Update .gitreview for stable/mitaka
+
+4.0.0.0rc1
+----------
+
+* Updated UI docs
+* Fix staled configs for ha deployments
+* Use auth admin for get_router when building proxy commands
+* Don't use precreated ports in heat templates
+* get_admin_context overwriting context
+* Inject drivers to jars in Ambari Spark engine
+* Deprecate HDP 2.0.6 plugin
+* Fix updating datasource without changing a name
+* register the config generator default hook with the right name
+* Fix a mess in config helpers
+* rewrite wait condition script
+* Run cluster verification after cluster / creation scaling
+* Fix HA for Resourcemanager
+* Add an extra copy of neutron info after run_job
+* Remove cinder v1 api support
+* Updated from global requirements
+* Updating quickstart guide with openstackclient usage
+* Fix MapR 500 tempest test fails
+* Moved CORS middleware configuration into oslo-config-generator
+* Add MapR 5.1.0
+* Fix blueprints configuration for HA
+
+4.0.0.0b3
+---------
+
+* Do not use explict keyword arguments in image resource
+* Improve exception message for wait_ambari_requests
+* Added #nosec to sahara.service.coordinator package
+* Added #nosec to sahara.utils.hacking package
+* add nosec to subprocess usage in launch_command
+* add nosec to remote ssh pickle usages
+* Refine the code for CDH PluginUtils class
+* Remove UI configuring for Oozie
+* Updated from global requirements
+* HA for NameNode and ResourceManager in HDP 2.2
+* move heat template version to common module
+* No longer necessary to specify jackson-core-asl in spark classpath
+* Improve config description in CDH config_helper
+* Remove unneeded version string check in CDH plugin
+* Remove unused pngmath Sphinx extension
+* Add Flume 1.6.0 to MapR plugin
+* Remove vanilla 2.6.0 in doc
+* Remove unsupported MapR plugin versions
+* Updating get_auth_token to use keystonemiddleware
+* remove hdp from the default plugin list
+* enable ambari plugin by default
+* Updating dashboard user guide post-reorg
+* Use the integrated tempest.lib module
+* Update CDH user doc for CDH 5.5.0
+* Add CDH 5.5 support
+* CDH plugin edp engine code refactoring
+* CDH plugin config helper refactoring
+* Updated from global requirements
+* Use ostestr instead of the custom pretty_tox.sh
+* split cloudera health checks
+* ambari health check implementation
+* Making health verification periodics distributed
+* Fixed typo of precendence to precedence
+* Fix typo in api_validator.py
+* Updated from global requirements
+* Added #nosec for bandit check
+* Missing ignore_prot_on_def flag
+* Updated from global requirements
+* Remove support for spark 1.0.0
+* [EDP] Add suspend_job() for sahara edp engine(oozie implementation)
+* Updated from global requirements
+* Remove vanilla 2.6.0 code
+* Add Spark 1.5.2 to MapR plugin
+* Fix in wrong substitution
+* Adding data source update validation
+* Adding more information to validation errors
+* Revert "Fix gate pep8"
+* Add default templates for spark plugin, version 1.6.0
+* Updated from global requirements
+* Add Hue 3.9.0 to MapR plugin
+* Add property 'MapR-FS heap size percent' to cluster template
+* implement sending health notifications
+* cloudera health checks implementation
+* Added scaling support for HDP 2.2 / 2.3
+* base cluster verifications implementation
+* Check that main-class value is not null in job execution validator
+* Fixes to make bandit integration tests work with sahara
+* honor api_insecure parameters
+* Replace assertNotEqual(None,) with assertIsNotNone
+* Start RPC service before waiting
+* Add support running Sahara as wsgi app
+* Add test cases for CDH plugin config_helper
+* CDH plugin versionhandler refactoring
+* Add test cases for versionhandler
+* Remove support of HDP 2.2
+* Use the oslo.utils.reflection to extract class name
+* Don't use Mock.called_once_with that does not exist
+* Add regex matching for job_executions_list()
+* Add regex matching for job_binary_internal_list()
+* Python3: Fix using dictionary keys()
+* Await start datanodes in Spark plugin
+* Updated from global requirements
+* Add regex matching for job_list()
+* Add regex matching for job_binary_list()
+* Add regex matching for node_group_templates_list()
+* Add regex matching for clusters_list()
+* Add regex matching for data_sources_list()
+* Add regex matching for cluster_templates_list()
+* add initial v2 api
+* add orphan to configs recommendations
+* add vanilla image builder docs to index
+* Enabling distributed periodics in devstack
+* Adding doc about distributed periodics
+* Fix gate pep8
+* Added support of Spark 1.6.0
+* Distributed periodic tasks implementation
+* Parse properties with custom key/value separator
+* Updated from global requirements
+* Revert "Enable sahara-dashboard devstack plugin in sahara plugin"
+* Update bandit version
+* Update the devstack.rst document
+* Enabling cluster termination via OPS in periodics
+* use uppercase 'S' in word "OpenStack"
+* Fix spell typos
+* Add creation of mapr user
+* Fix missing configuration for mapreduce
+* Fix problem with zombie processes in engine
+* Add Hive 1.2 to MapR plugin
+* Add Oozie 4.2.0 to MapR plugin
+* Add Pig 0.15 to MapR plugin
+* Add Drill 1.4 to MapR plugin
+* Add ability for setting file mode
+* CDH plugin validation mudule refactoring
+* Add CDH plugin validation test cases
+* Add install priority to each service
+* Remove redundant tabs when add MapR repos
+* Remove outdated pot files
+* Add unit test cases for cdh plugin utils
+* Move notifications options into oslo_messaging_notifications
+* Updated from global requirements
+* Allow 'is_public' to be set on protected resources
+* Add 'is_protected' field to all default templates
+* Change 'ignore_default' to 'ignore_prot_on_def'
+* Remove overlap of 'is_default' and 'is_protected' for templates
+* correct spelling mistake
+* Update the link to sahara.py
+* Updated from global requirements
+* Add release notes for external key manager usage
+* Fix anti-affinity handling in heat engine
+* Where filter is not done correctly on programmatic selection
+* Remove scenario tests and related files
+* Use internal auth url to communicate with swift
+* Updated from global requirements
+* notification_driver from group DEFAULT is deprecated
+
+4.0.0.0b2
+---------
+
+* Migrate to new repository in gate checks
+* Fix python 2,3 compatibility issue with six
+* Fixing kwarg name for centos repository
+* Updated from global requirements
+* Fix using regions in all OS clients
+* Add release notes for scheduling EDP jobs
+* remove openstack-common.conf
+* Updated from global requirements
+* Enable sahara-dashboard devstack plugin in sahara plugin
+* Add a common Hive and Pig config in workflow_factory
+* add cdh plugin passwords to key manager
+* add debug testenv in tox
+* add developer documentation about the key manager
+* Updated from global requirements
+* add helper functions for key manager
+* Setting auth_url for token auth plugin object
+* Replace deprecated library function os.popen() with subprocess
+* Enable passwordless ssh beetween vanilla nodes
+* Added Keystone and RequestID headers to CORS middleware
+* Removed redundant list declaration
+* Updated from global requirements
+* Change assertTrue(isinstance()) by optimal assert
+* Fix wrong file path in scenario test README.rst
+* Updated from global requirements
+* Use run_as_root instead of sudo to execute_command
+* Ensure default arguments are not mutable
+* Compare node groups in CDH plugin IMPALA validation
+* Add translation for log messages
+* Fixing cinder check with is_proxy_gateway
+* Update HA scenario for CDH
+* Use cfg.PortOpt for port option
+* Clean the code in vanilla's utils
+* [EDP] Add scheduling EDP jobs in sahara(oozie engine implementation)
+* Adding doc about data source placeholders
+* Remove she-bang from sahara CLI modules
+* Stop using unicode builtin
+* Initial key manager implementation
+* Move c_helper, db_helper into __init__ for CDH plugin_utils
+* Updated from global requirements
+* Added check for images tags
+* Updated from global requirements
+* Replace assertEqual(None, *) with assertIsNone in tests
+* Updates DevStack git repo link in Sahara Dev Ref
+* Implement custom check for Kafka Service
 * Don't configure hadoop.tmp.dir in Spark plugin
 * Updated from global requirements
-* Add release notes for missed bugs
-* Force releasenotes warnings to be treated as errors
-* Option for disabling wait condition feature
-* Remove sharps from release notes
+* Deprecated tox -downloadcache option removed
 * Updated from global requirements
-* Fix Spark installation fails when parsing spark-env.sh
+* Scenario templates: make is_proxy_gateway configurable
+* Added several parametrs to priority-one-confs file
+* Add CDH plugin edp engine unit tests
+* Add missing i18n module into CDH plugin edp_engine
+* Add ability to get auth token from auth plugin
+* Trust usage improvements in sahara
+* Replacing all hard coded cluster status using cluster_utils
+* Always enable heat service in devstack plugin
+* Remove unused code from volumes module
+* Updated from global requirements
+* Now updating cluster templates on update
+* Add log when directly return from cancel_job
+* Updated from global requirements
+* remove the qpid message driver from the configuration file
+* Adds nosec to system call in NetcatSocket._terminate
+* rewrite heat client calls
+* Remove MANIFEST.in
+* Updated from global requirements
+* refine the development environment document
+* test: make enforce_type=True in CONF.set_override
+* Explicitly calling start for sahara-api in sahara-all
+* Adding ability disable anti_affinty check in plugin
+* Remove version from setup.cfg
+* Force releasenotes warnings to be treated as errors
+
+4.0.0.0b1
+---------
+
+* Override verify argument of generic session
+* Add missed checks for testing update method
+* Updated from global requirements
+* Optimize "open" method with context manager
+* Launching 1 instance in grenade instead of 2
+* Updated from global requirements
+* Fix bashate warnings
+* Support of Spark EDP in Ambari plugin
+* Check cluster if it is None before run job
+* Enable heat_enable_wait_condition by default
+* Update scenario test readme file
+* Add more useful information to the Heat stack description
+* Replacing hard coded cluster status using cluster_utils
+* cleanup sahara commands
+* Support unmounting shares on cluster update
+* Updated from global requirements
+* Mounting changed shares on cluster update
 * Remove unneeded 'self' in plugins.cdh.v5_4_0.plugin_utils
-* Report stack_status_reason on heat failure
+* Drop direct engine support
+* Remove old integration tests for sahara codebase
+* Option for disabling wait condition feature
 * Remove unneeded volume serialization
+* Updated from global requirements
+* Doc fix: use_floating_ip to use_floating_ips
+* change port option from Opt to IntOpt
+* implement is_sahara_enabled
+* Add test cases for CDH plugin versionfactory
+* Adding tests for checking updating of templates
+* Updated from global requirements
 * Add "unreleased" release notes page
 * Support reno for release notes management
-* Fix spark workers do not start in MapR plugin
+* Update Sahara Dev Quickstart Guide
+* Updated from global requirements
+* Fix doc8 check failures
+* Rename get_job_status to get_job_info in oozie.py
+* Updated from global requirements
+* Run py34 first in default tox run
+* Updated from global requirements
+* Use oslo.service for launching sahara
+* Disable base repos by the option
+* Publish sample conf to docs
+* refine the sahara installation guide
+* Move doc8 dependency to test-requirements.txt
+* Fix E005 bashate error
+* Plugin version error in scenario test for vanilla2.6.0
+* Add unit test to cover cancel job operation in oozie engine
 * Make ssh timeout configurable
-* Fix of client tests in tempest
-* Fix tempest tests
-* Fixing search of devices that need to be mount
-* Fixing problem with validation of job binaries update
-* Add additional filter to volume_type check
-* Fixing event log handling during volumes mount
-* Fixing cluster creation with is_protected field
 * Missing stuff for Kafka in Ambari plugin
+* Add default templates for MapR plugin 5.0.0 mrv1 & mrv2
+* Support overriding of driver classpath in Spark jobs
+* Add ability validate yaml files before run tests
+* Remove TODO line while bug 1413602 is fixed
+* Add CDH test enabling HDFS HA
+* Add CDH 5.4.0 contents in doc
+* Allowing shares to be edited on cluster update
+* Remove TODO in the feature.rst
+* Fix a couple typo in EDP doc
+* Refine the overview.rst for sahara
+* Fix Spark installation fails when parsing spark-env.sh
+* Disable security for Oozie in Ambari
+* Remove verbose code for hive metastore schema creation in MapR plugin
+* Providing more information about fail job
+* Refine the doc for sahara
+* Fix magic method name in plugin.cdh.clent.type
+* Add additional filter to volume_type check
+* Remove known issue from the doc
+* Use assertTrue/False instead of assertEqual(T/F)
+* Updated from global requirements
 * Fixing job execution creation with is_protected field
-* Add first reno-based release note
-* Changing fedora image url for grenade job
-* Fixing grenade_job
+* Fixing cluster creation with is_protected field
+* Adding ability to register image without description
+* Get Open Ports for Storm
+* Simplify the method _count_instances_to_attach
+* Add source url into README.rst
+* Updated from global requirements
+* Fix Mapr on ci
+* Fixing problem with validation of job binaries update
+* Fixing search of devices that need to be mount
+* Cleanup config-generator.sahara.conf
+* Updated from global requirements
+* Switched CORS configuration to use oslo_config
+* Add batching for EDP jobs in scenario tests
+* Fixing event log handling during volumes mount
+* Fixing grenade job
+* Add support of Drill 1.2 to MapR plugin
+* Add -f option to formatting volumes for xfs
+* Hive job type support on CI
+* Add unit tests for AuthValidator middleware
+* Remove old sahara endpoint
 * Updated from global requirements
 * Add -f option to formatting volumes
-* Updated from global requirements
 * Fix issue with job types in Ambari plugin
+* Fix tempest tests
+* Modify service-role view in creating node group template
 * Updated from global requirements
-* Fix .gitreview for stable/liberty branch
-* Switch to post-versioning
+* Add ability running tests on existing cluster
+* Reformat job flows
+* Bringing the Sahara Bandit config current
+* Add testresources used by oslo.db fixture
+* Use api-paste.ini for loading middleware
+* Add event logs for MapR plugin
+* code cleanup
+* Fixing grenade job for upgrades from liberty
+* Fix typos in developer documentation
+* Updated from global requirements
 * Fixing cluster creation without auto_security_group
+* Use distributed mode by default in devstack
+* Updated from global requirements
+* Adding ability run several edp jobs flows
+* Updated from global requirements
+* Add /usr/share/sahara/rootwrap to filters_path
+* Fixing grenade_job
+* replace multiple if stmts with dict and for loop
+* Fix the bug of "Error spelling of a word"
+* Fix the bug of "Error spelling of 'occured'"
+* Removed redundant metaclass declarations in MapR plugin
+* Fix of client tests in tempest
+* Added support for Spark 1.3.1 in MapR plugin
+* use list comprehensions
+* Cleanup databases during execution of hive example
+* Open Mitaka development
 
 3.0.0
 -----
@@ -52,6 +372,8 @@ CHANGES
 * Updating vanilla imagebuilder docs
 * Add more information about configuring NTP service
 * Fix problem with loading Ambari configs
+* Update indexes after adding security repo in MapR plugin
+* Add put data in HDFS for EDP testcase
 * Add wait condition for heat templates
 * Updated from global requirements
 * Change ignore-errors to ignore_errors
@@ -78,6 +400,7 @@ CHANGES
 * Selects IPv4 preferentially for internal_ip
 * Fix working scenario tests with swiftclient
 * Improving cluster templates validation
+* Report stack_status_reason on heat failure
 * Change nova client util to use proper client
 * New doc about autoconfiguration policy
 * Increasing time for cluster creation/deletion in grenade
@@ -103,6 +426,7 @@ CHANGES
 * Update plugin spi docs with new method
 * [sahara doc fix] guest requirements doc
 * [sahara doc fix] registering image doc
+* Enable anti_affinity feature in scenario test
 * Fix mocks in scenario_unit tests
 * [CDH] Fix problem with launching Spark jobs
 * Updating architecture doc
@@ -143,6 +467,7 @@ CHANGES
 * Removed installation of Oozie sharelibs in MapR plugin
 * Fix problem with using auto security groups in Heat
 * adding developer docs guidelines about clients
+* Added HBase REST node process to MapR plugin
 * Disable autotune configs for scaling old clusters
 * Add sample spark wordcount job
 * Deprecate Vanilla 2.6.0
@@ -204,6 +529,7 @@ CHANGES
 * Fix HBase config name when using HA with HDP 2.0.6
 * Removed confusing typos in utils/openstack/base.py file
 * Remove README in sahara/locale
+* Update stackforge to openstack
 * Updated from global requirements
 * Fix wrong compute nodes name in doc
 * Adding HTTP PATCH method to modify existing resources
