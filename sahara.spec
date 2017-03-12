@@ -4,7 +4,7 @@
 #
 Name     : sahara
 Version  : 4.0.0
-Release  : 17
+Release  : 18
 URL      : http://tarballs.openstack.org/sahara/sahara-4.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/sahara/sahara-4.0.0.tar.gz
 Source1  : sahara-all.service
@@ -17,65 +17,48 @@ Requires: sahara-bin
 Requires: sahara-python
 Requires: sahara-config
 Requires: sahara-data
-BuildRequires : Flask
-BuildRequires : PyMySQL
-BuildRequires : SQLAlchemy
-BuildRequires : Sphinx
-BuildRequires : Tempita
-BuildRequires : WebOb
-BuildRequires : Werkzeug
-BuildRequires : alembic
-BuildRequires : anyjson
-BuildRequires : bashate
-BuildRequires : cmd2
-BuildRequires : coverage
-BuildRequires : docutils-python
-BuildRequires : extras
-BuildRequires : hacking
-BuildRequires : itsdangerous
-BuildRequires : jsonschema
-BuildRequires : keystonemiddleware
-BuildRequires : msgpack-python
-BuildRequires : netaddr
-BuildRequires : netifaces
-BuildRequires : ordereddict
-BuildRequires : oslo.db
-BuildRequires : oslo.messaging
-BuildRequires : oslo.middleware
-BuildRequires : oslo.policy
-BuildRequires : oslo.rootwrap
-BuildRequires : oslo.service
-BuildRequires : oslosphinx
-BuildRequires : oslotest
-BuildRequires : paramiko
+Requires: Babel
+Requires: Flask
+Requires: Jinja2
+Requires: SQLAlchemy
+Requires: WebOb
+Requires: alembic
+Requires: castellan
+Requires: eventlet
+Requires: iso8601
+Requires: jsonschema
+Requires: oslo.concurrency
+Requires: oslo.config
+Requires: oslo.context
+Requires: oslo.db
+Requires: oslo.i18n
+Requires: oslo.log
+Requires: oslo.messaging
+Requires: oslo.middleware
+Requires: oslo.policy
+Requires: oslo.rootwrap
+Requires: oslo.serialization
+Requires: oslo.service
+Requires: oslo.utils
+Requires: paramiko
+Requires: pbr
+Requires: python-cinderclient
+Requires: python-heatclient
+Requires: python-keystoneclient
+Requires: python-manilaclient
+Requires: python-neutronclient
+Requires: python-novaclient
+Requires: python-swiftclient
+Requires: requests
+Requires: six
+Requires: stevedore
+Requires: tooz
+BuildRequires : configparser-python
 BuildRequires : pbr
 BuildRequires : pip
-BuildRequires : psycopg2
-BuildRequires : pylint
-BuildRequires : pyparsing
-BuildRequires : python-barbicanclient
-BuildRequires : python-cinderclient
 BuildRequires : python-dev
-BuildRequires : python-editor
-BuildRequires : python-heatclient
-BuildRequires : python-manilaclient
-BuildRequires : python-mimeparse
-BuildRequires : python-mock
-BuildRequires : python-neutronclient
-BuildRequires : python-novaclient
-BuildRequires : python-saharaclient
-BuildRequires : python-swiftclient
-BuildRequires : repoze.lru
-BuildRequires : rfc3986
+BuildRequires : python3-dev
 BuildRequires : setuptools
-BuildRequires : sphinxcontrib-httpdomain
-BuildRequires : sqlalchemy-migrate
-BuildRequires : sqlparse
-BuildRequires : stevedore
-BuildRequires : tempest-lib
-BuildRequires : testrepository
-BuildRequires : traceback2
-BuildRequires : unittest2
 Patch1: 0001-Add-default-conf-file.patch
 Patch2: 0002-Modify-rootwrap-location.patch
 Patch3: 0003-Set-default-syslog.patch
@@ -113,8 +96,6 @@ data components for the sahara package.
 %package python
 Summary: python components for the sahara package.
 Group: Default
-Requires: keystonemiddleware
-Requires: stevedore
 
 %description python
 python components for the sahara package.
@@ -127,16 +108,16 @@ python components for the sahara package.
 %patch3 -p1
 
 %build
+export LANG=C
+export SOURCE_DATE_EPOCH=1489336984
 python2 setup.py build -b py2
+python3 setup.py build -b py3
 
-%check
-export http_proxy=http://127.0.0.1:9/
-export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost,127.0.0.1,0.0.0.0
-python3 setup.py test ||:
 %install
+export SOURCE_DATE_EPOCH=1489336984
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot}
+python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
 mkdir -p %{buildroot}/usr/lib/systemd/system
 install -m 0644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/sahara-all.service
 install -m 0644 %{SOURCE2} %{buildroot}/usr/lib/systemd/system/sahara-api.service
