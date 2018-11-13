@@ -1,34 +1,123 @@
 CHANGES
 =======
 
-8.0.1
+9.0.0
 -----
 
-* Fix the installation of Swift Hadoop connector (Ambari)
+* Fixing anti-affinity for Sahara
+* import zuul job settings from project-config
+* Update UPPER\_CONSTRAINTS\_FILE for stable/rocky
+* Update .gitreview for stable/rocky
+
+9.0.0.0rc1
+----------
+
+* Imported Translations from Zanata
+* Add some S3 doc
+* Enable also ambari by default in devstack
+* Another small fix for cluster creation on APIv2
+* S3 data source URL format change
+* Sets correct permission for /etc/hosts
+* Fixing cluster creation on APIv2
+* Allow overriding of /etc/hosts entries
+
+9.0.0.0b3
+---------
+
+* Enable mutable config in sahara
+* Adding Ambari 2.6 to image pack
+* Adding Storm 1.2.0 and 1.2.1
+* Unversioned endpoint recommendation
+* api-ref: move to a v1.1 sub-folder
+* Trivial: Update Zuul Status Page to correct URL
+* Switch make\_json\_error back to being a function
+* Final fixup to APIv2 responses
+* Deprecate sahara-all
+* Switch hive\_enable\_db\_notification's default value
+* S3 data source
+* Switch the coverage tox target to stestr
+* Updating Spark versions
+* Fixing extjs check on cdh and mapr
+* Switch ostestr to stestr
+* Bump Flask version according requirements
+* Fix flask.request.content\_length is None
+* Use register\_error\_handler to register make\_json\_error
+* Boot from volume
+* Remove any reference to pre-built images
+* Updating plugins status for Rocky
+* Adding CDH 5.13
+* Replace the deleted keypair in clusters for API v2
+* Better default value for domain in swift config
+* Improve force delete
+* Updated oozie version
+* Fix the code repository for clone action
+* add release notes to readme.rst
+* doc: light cleanup of the ironic-integration page
+* doc: external link helper for other projects' doc
+* Update the command to change the hostname
+
+9.0.0.0b2
+---------
+
+* fix tox python3 overrides
+* Check node processes earlier
+* [APIv2]Consolidate cluster creation endpoints
+* Add support to deploy hadoop 2.7.5
 * Restore Ambari with newer JDK security policies
-* Switch from sahara-file to tarballs.o.o for artifacts
 * Fixing java version for Ambari
+* Switch from sahara-file to tarballs.o.o for artifacts
+* Deploy using wsgi by default
 * Fix: really install extjs in CDH images at build time
-* Adding Ambari missing versions
-* Fix: always use kafka 2.2 for CDH 5.11
+* doc: add the redirect for a file recently renamed
 * Fix the detection of scala version (now https)
-* Migration to Storyboard
+* Fix the installation of Swift Hadoop connector (Ambari)
 * Fix the installation of the Swift Hadoop connector (CDH)
-* Fix the openstack endpoint create failed
+* fix a typo: s/avaliable/available
+* Remove the (now obsolete) pip-missing-reqs tox target
 * Replace Chinese punctuation with English punctuation
+* Fix the openstack endpoint create failed
+* Fix: always use kafka 2.2 for CDH 5.11
+* Adding Ambari missing versions
+
+9.0.0.0b1
+---------
+
+* Extend config-grabbing magic to new oslo.config
 * Adding ntpdate and Scala to mapr image
-* Fix MapR dependency on mysql on RHEL
+* Change doc registering-image image message
 * Remove step upload package to oozie/sharelib
+* uncap eventlet
+* Fix MapR dependency on mysql on RHEL
+* correct lower-constraints
+* Support of HDP 2.6
+* Follow the new PTI for document build
+* Updated from global requirements
+* add lower-constraints job
+* File copy timesout when file is too big
 * Preload soci-mysql and soci on RHEL7 images
-* Fix Spark EDP job failed in vanilla 2.8.2
+* Migration to Storyboard
+* Updated from global requirements
+* Updated from global requirements
+* Updated from global requirements
 * Adding support for RHEL images
+* Remove unused module
+* change python-libguestfs to python-guestfs for ubuntu
+* Updated from global requirements
+* Imported Translations from Zanata
+* Updated from global requirements
+* Update mysql connection in configuration-guide.rst
+* Imported Translations from Zanata
+* Fix Spark EDP job failed in vanilla 2.8.2
+* Fix documents title format error
 * Migrate the artifact link to sahara-extra, use https
-* Native Zuul v3 jobs (almost all of them)
+* Updated from global requirements
+* Updated from global requirements
 * Adding Ambari 2.4.2.0 to image gen
+* Native Zuul v3 jobs (almost all of them)
+* Change some parameters to be required in api-ref
 * Fix the parameter in api-ref
 * Imported Translations from Zanata
-* Update UPPER\_CONSTRAINTS\_FILE for stable/queens
-* Update .gitreview for stable/queens
+* Update reno for stable/queens
 
 8.0.0
 -----

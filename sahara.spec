@@ -5,26 +5,28 @@
 # Source0 file verified with key 0xC36CDCB4DF00C68C (infra-root@openstack.org)
 #
 Name     : sahara
-Version  : 8.0.1
-Release  : 19
-URL      : http://tarballs.openstack.org/sahara/sahara-8.0.1.tar.gz
-Source0  : http://tarballs.openstack.org/sahara/sahara-8.0.1.tar.gz
+Version  : 9.0.0
+Release  : 20
+URL      : http://tarballs.openstack.org/sahara/sahara-9.0.0.tar.gz
+Source0  : http://tarballs.openstack.org/sahara/sahara-9.0.0.tar.gz
 Source1  : sahara-all.service
 Source2  : sahara-api.service
 Source3  : sahara-engine.service
-Source99 : http://tarballs.openstack.org/sahara/sahara-8.0.1.tar.gz.asc
+Source99 : http://tarballs.openstack.org/sahara/sahara-9.0.0.tar.gz.asc
 Summary  : Sahara project
 Group    : Development/Tools
 License  : Apache-2.0
-Requires: sahara-bin
-Requires: sahara-config
-Requires: sahara-python3
-Requires: sahara-license
-Requires: sahara-python
+Requires: sahara-bin = %{version}-%{release}
+Requires: sahara-config = %{version}-%{release}
+Requires: sahara-license = %{version}-%{release}
+Requires: sahara-python = %{version}-%{release}
+Requires: sahara-python3 = %{version}-%{release}
+Requires: sahara-services = %{version}-%{release}
 Requires: Babel
 Requires: Flask
 Requires: Jinja2
 Requires: SQLAlchemy
+Requires: Sphinx
 Requires: WebOb
 Requires: alembic
 Requires: botocore
@@ -34,6 +36,8 @@ Requires: iso8601
 Requires: jsonschema
 Requires: keystoneauth1
 Requires: keystonemiddleware
+Requires: openstackdocstheme
+Requires: os-api-ref
 Requires: oslo.concurrency
 Requires: oslo.config
 Requires: oslo.context
@@ -57,15 +61,14 @@ Requires: python-manilaclient
 Requires: python-neutronclient
 Requires: python-novaclient
 Requires: python-swiftclient
+Requires: reno
 Requires: requests
 Requires: six
+Requires: sphinxcontrib-httpdomain
 Requires: stevedore
 Requires: tooz
 BuildRequires : buildreq-distutils3
 BuildRequires : pbr
-BuildRequires : pip
-BuildRequires : python3-dev
-BuildRequires : setuptools
 
 %description
 Team and repository tags
@@ -74,8 +77,9 @@ Team and repository tags
 %package bin
 Summary: bin components for the sahara package.
 Group: Binaries
-Requires: sahara-config
-Requires: sahara-license
+Requires: sahara-config = %{version}-%{release}
+Requires: sahara-license = %{version}-%{release}
+Requires: sahara-services = %{version}-%{release}
 
 %description bin
 bin components for the sahara package.
@@ -100,7 +104,7 @@ license components for the sahara package.
 %package python
 Summary: python components for the sahara package.
 Group: Default
-Requires: sahara-python3
+Requires: sahara-python3 = %{version}-%{release}
 
 %description python
 python components for the sahara package.
@@ -115,22 +119,30 @@ Requires: python3-core
 python3 components for the sahara package.
 
 
+%package services
+Summary: services components for the sahara package.
+Group: Systemd services
+
+%description services
+services components for the sahara package.
+
+
 %prep
-%setup -q -n sahara-8.0.1
+%setup -q -n sahara-9.0.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532375869
-python3 setup.py build -b py3
+export SOURCE_DATE_EPOCH=1542082226
+python3 setup.py build
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/sahara
-cp LICENSE %{buildroot}/usr/share/doc/sahara/LICENSE
-python3 -tt setup.py build -b py3 install --root=%{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/sahara
+cp LICENSE %{buildroot}/usr/share/package-licenses/sahara/LICENSE
+python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
@@ -159,13 +171,10 @@ install -m 0644 %{SOURCE3} %{buildroot}/usr/lib/systemd/system/sahara-engine.ser
 %config /usr/etc/sahara/api-paste.ini
 %config /usr/etc/sahara/rootwrap.conf
 %config /usr/etc/sahara/rootwrap.d/sahara.filters
-/usr/lib/systemd/system/sahara-all.service
-/usr/lib/systemd/system/sahara-api.service
-/usr/lib/systemd/system/sahara-engine.service
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/sahara/LICENSE
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/sahara/LICENSE
 
 %files python
 %defattr(-,root,root,-)
@@ -173,3 +182,9 @@ install -m 0644 %{SOURCE3} %{buildroot}/usr/lib/systemd/system/sahara-engine.ser
 %files python3
 %defattr(-,root,root,-)
 /usr/lib/python3*/*
+
+%files services
+%defattr(-,root,root,-)
+/usr/lib/systemd/system/sahara-all.service
+/usr/lib/systemd/system/sahara-api.service
+/usr/lib/systemd/system/sahara-engine.service
