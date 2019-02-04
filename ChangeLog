@@ -1,6 +1,23 @@
 CHANGES
 =======
 
+9.0.1
+-----
+
+* Fixing cluster scale
+* doc: restructure the image building documentation
+* Add DEBIAN\_FRONTEND=noninteractive in front of apt-get install commands
+* Increase the startup time of ambari-server to 180s
+* Fixing image validation for Ambari 2.3
+* sahara-image-pack: use curl for tarballs.openstack.org
+* sahara-image-pack: remove bashisms from shell scripts
+* Force the format of ssh key to PEM, at least for now
+* Add template param for ambari pkg install timeout
+* doc: update distro information and cloud-init users
+* Correct repo\_id\_map for hdp 2.5
+* Import the legacy grenade sahara job
+* Correct Hbase ports in Ambari plugin
+
 9.0.0
 -----
 
@@ -1503,8 +1520,8 @@ CHANGES
 * pass environment variables of proxy to tox
 * Switch to oslo.service
 
-3.0.0.0b1
----------
+3.0.0b1
+-------
 
 * Updated from global requirements
 * Add sentry check for CDH 5.3
