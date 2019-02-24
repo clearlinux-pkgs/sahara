@@ -4,7 +4,7 @@
 #
 Name     : sahara
 Version  : 9.0.1
-Release  : 21
+Release  : 22
 URL      : http://tarballs.openstack.org/sahara/sahara-9.0.1.tar.gz
 Source0  : http://tarballs.openstack.org/sahara/sahara-9.0.1.tar.gz
 Source1  : sahara-all.service
@@ -23,7 +23,6 @@ Requires: Babel
 Requires: Flask
 Requires: Jinja2
 Requires: SQLAlchemy
-Requires: Sphinx
 Requires: WebOb
 Requires: alembic
 Requires: botocore
@@ -33,8 +32,6 @@ Requires: iso8601
 Requires: jsonschema
 Requires: keystoneauth1
 Requires: keystonemiddleware
-Requires: openstackdocstheme
-Requires: os-api-ref
 Requires: oslo.concurrency
 Requires: oslo.config
 Requires: oslo.context
@@ -58,10 +55,8 @@ Requires: python-manilaclient
 Requires: python-neutronclient
 Requires: python-novaclient
 Requires: python-swiftclient
-Requires: reno
 Requires: requests
 Requires: six
-Requires: sphinxcontrib-httpdomain
 Requires: stevedore
 Requires: tooz
 BuildRequires : buildreq-distutils3
@@ -135,7 +130,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549252944
+export SOURCE_DATE_EPOCH=1551037563
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
