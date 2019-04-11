@@ -1,35 +1,83 @@
 CHANGES
 =======
 
-9.0.1
------
+10.0.0
+------
 
+* doc: refer to the split plugin documentation
+* Making Sahara Python 3 compatible
+* grenade: re-enable, really test rocky->master
+* Fix the lower-requirements job: libpq-dev, psycopg 2.7
+* Add missing ws seperator between words
+* Use authorize instead of enforce for policies
+* Fixing policies inconsistencies
+* Add API v2 jobs (scenario, tempest); buildimages fixes
+* add python 3.7 unit test job
+* Adapt to the additional rules from pycodestyle 2.5.0
+* Fixing NTP issues for CDH plugin
+* Adding spark build image job
+* Changing hdfs fs to hdfs dfs
+* Dynamically loading plugins
+* Add missing ws separator between words
+* Make sure that default\_ntp\_server option is exported
+* Fix version discovery for Python 3
+
+10.0.0.0b1
+----------
+
+* Prepare Sahara core for plugin split
+* Declare APIv2 stable and CURRENT
+* Give the illusion of microversion support
+* Some polish for APIv2
+* API v2: fix "local variable 'c' referenced before assignment"
+* APIv2 - Fix 500 on malformed query string on
+* Enhance boot from volume
+* APIv2 - api-ref documentation for APIv2
+* Deploying Sahara with unversioned endpoints
+* Fix validation of job binary with Python3
+* Migrate away from oslo\_i18n.enable\_lazy()
+* APIv2 Changing return payload to project\_id
 * Fixing cluster scale
-* doc: restructure the image building documentation
+* doc: Fix the snippet in "The Script Validator" section
+* String-related fixes for Python 3
+* fixed word error
 * Add DEBIAN\_FRONTEND=noninteractive in front of apt-get install commands
-* Increase the startup time of ambari-server to 180s
+* Bump the version of hacking to 1.1.0, with few fixes
+* Update devel info: mailing list, meeting time
+* Update http link to https
+* Add python 3.6 unit test job
+* Add framework for sahara-status upgrade check
+* doc: restructure the image building documentation
 * Fixing image validation for Ambari 2.3
+* Cleanup tox.ini constraint handling
+* Increase the startup time of ambari-server to 180s
+* Increment versioning with pbr instruction
+* Fix a typo on Storm plugin cluster info (Strom -> Storm)
 * sahara-image-pack: use curl for tarballs.openstack.org
 * sahara-image-pack: remove bashisms from shell scripts
+* adds unit test for ssh\_remote.replace\_remote\_line
 * Force the format of ssh key to PEM, at least for now
 * Add template param for ambari pkg install timeout
+* Use templates lower-constraints, update cover job
+* grenade: relevant fixes for master (sahara-api/apache)
 * doc: update distro information and cloud-init users
+* Fixed link for more information about Ambari images
 * Correct repo\_id\_map for hdp 2.5
+* Make sahara-grenade job voting on the "gate" queue too
 * Import the legacy grenade sahara job
 * Correct Hbase ports in Ambari plugin
-
-9.0.0
------
-
 * Fixing anti-affinity for Sahara
+* add python 3.6 unit test job
+* switch documentation job to new PTI
 * import zuul job settings from project-config
-* Update UPPER\_CONSTRAINTS\_FILE for stable/rocky
-* Update .gitreview for stable/rocky
+* Imported Translations from Zanata
+* Update reno for stable/rocky
 
 9.0.0.0rc1
 ----------
 
 * Imported Translations from Zanata
+* Adapt to Keystone changes: use member instead of Member
 * Add some S3 doc
 * Enable also ambari by default in devstack
 * Another small fix for cluster creation on APIv2
@@ -1520,8 +1568,8 @@ CHANGES
 * pass environment variables of proxy to tox
 * Switch to oslo.service
 
-3.0.0b1
--------
+3.0.0.0b1
+---------
 
 * Updated from global requirements
 * Add sentry check for CDH 5.3
