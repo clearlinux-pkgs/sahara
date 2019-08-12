@@ -6,18 +6,18 @@
 #
 Name     : sahara
 Version  : 10.0.0
-Release  : 25
+Release  : 26
 URL      : http://tarballs.openstack.org/sahara/sahara-10.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/sahara/sahara-10.0.0.tar.gz
 Source1  : sahara-all.service
 Source2  : sahara-api.service
 Source3  : sahara-engine.service
-Source99 : http://tarballs.openstack.org/sahara/sahara-10.0.0.tar.gz.asc
+Source4 : http://tarballs.openstack.org/sahara/sahara-10.0.0.tar.gz.asc
 Summary  : Sahara project
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: sahara-bin = %{version}-%{release}
-Requires: sahara-config = %{version}-%{release}
+Requires: sahara-data = %{version}-%{release}
 Requires: sahara-license = %{version}-%{release}
 Requires: sahara-python = %{version}-%{release}
 Requires: sahara-python3 = %{version}-%{release}
@@ -63,20 +63,57 @@ Requires: requests
 Requires: six
 Requires: stevedore
 Requires: tooz
+BuildRequires : Babel
+BuildRequires : Flask
+BuildRequires : Jinja2
+BuildRequires : SQLAlchemy
+BuildRequires : WebOb
+BuildRequires : alembic
+BuildRequires : botocore
 BuildRequires : buildreq-distutils3
+BuildRequires : castellan
+BuildRequires : eventlet
+BuildRequires : iso8601
+BuildRequires : jsonschema
+BuildRequires : keystoneauth1
+BuildRequires : keystonemiddleware
+BuildRequires : oslo.concurrency
+BuildRequires : oslo.config
+BuildRequires : oslo.context
+BuildRequires : oslo.db
+BuildRequires : oslo.i18n
+BuildRequires : oslo.log
+BuildRequires : oslo.messaging
+BuildRequires : oslo.middleware
+BuildRequires : oslo.policy
+BuildRequires : oslo.rootwrap
+BuildRequires : oslo.serialization
+BuildRequires : oslo.service
+BuildRequires : oslo.upgradecheck
+BuildRequires : oslo.utils
+BuildRequires : paramiko
 BuildRequires : pbr
+BuildRequires : python-cinderclient
+BuildRequires : python-glanceclient
+BuildRequires : python-heatclient
+BuildRequires : python-keystoneclient
+BuildRequires : python-manilaclient
+BuildRequires : python-neutronclient
+BuildRequires : python-novaclient
+BuildRequires : python-swiftclient
+BuildRequires : requests
+BuildRequires : six
+BuildRequires : stevedore
+BuildRequires : tooz
 
 %description
-Sahara Default Template CLI
-===========================
-The *sahara-templates* application is a simple CLI for managing default
-templates in Sahara. This document gives an overview of default templates
-and explains how to use the CLI.
+Team and repository tags
+        ========================
 
 %package bin
 Summary: bin components for the sahara package.
 Group: Binaries
-Requires: sahara-config = %{version}-%{release}
+Requires: sahara-data = %{version}-%{release}
 Requires: sahara-license = %{version}-%{release}
 Requires: sahara-services = %{version}-%{release}
 
@@ -84,12 +121,12 @@ Requires: sahara-services = %{version}-%{release}
 bin components for the sahara package.
 
 
-%package config
-Summary: config components for the sahara package.
-Group: Default
+%package data
+Summary: data components for the sahara package.
+Group: Data
 
-%description config
-config components for the sahara package.
+%description data
+data components for the sahara package.
 
 
 %package license
@@ -133,8 +170,13 @@ services components for the sahara package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1554950496
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1565632738
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -151,6 +193,11 @@ mkdir -p %{buildroot}/usr/lib/systemd/system
 install -m 0644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/sahara-all.service
 install -m 0644 %{SOURCE2} %{buildroot}/usr/lib/systemd/system/sahara-api.service
 install -m 0644 %{SOURCE3} %{buildroot}/usr/lib/systemd/system/sahara-engine.service
+## install_append content
+install -d -m 755 %{buildroot}/usr/share/defaults
+mv %{buildroot}/usr/etc/sahara %{buildroot}/usr/share/defaults/
+rm -rf %{buildroot}/usr/etc
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -168,11 +215,11 @@ install -m 0644 %{SOURCE3} %{buildroot}/usr/lib/systemd/system/sahara-engine.ser
 /usr/bin/sahara-templates
 /usr/bin/sahara-wsgi-api
 
-%files config
+%files data
 %defattr(-,root,root,-)
-%config /usr/etc/sahara/api-paste.ini
-%config /usr/etc/sahara/rootwrap.conf
-%config /usr/etc/sahara/rootwrap.d/sahara.filters
+/usr/share/defaults/sahara/api-paste.ini
+/usr/share/defaults/sahara/rootwrap.conf
+/usr/share/defaults/sahara/rootwrap.d/sahara.filters
 
 %files license
 %defattr(0644,root,root,0755)

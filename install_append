@@ -1,7 +1,9 @@
-#install -d -m 755 %{buildroot}/usr/share/defaults/sahara/
+install -d -m 755 %{buildroot}/usr/share/defaults
 #install -p -D -m 644 etc/sahara/*.conf %{buildroot}/usr/share/defaults/sahara/
 #install -p -D -m 644 etc/sahara/*.json %{buildroot}/usr/share/defaults/sahara/
 #install -p -D -m 644 etc/sahara/sahara.conf.sample %{buildroot}/usr/share/defaults/sahara/sahara.conf
 #install -p -D -m 644 etc/sahara/compute.topology.sample %{buildroot}/usr/share/defaults/sahara/
 #install -p -D -m 644 etc/sahara/swift.topology.sample %{buildroot}/usr/share/defaults/sahara/
 #install -p -D -m 644 etc/sahara/sahara.conf.sample-basic %{buildroot}/usr/share/defaults/sahara/
+mv %{buildroot}/usr/etc/sahara %{buildroot}/usr/share/defaults/
+rm -rf %{buildroot}/usr/etc
