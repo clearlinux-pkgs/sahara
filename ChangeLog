@@ -1,6 +1,43 @@
 CHANGES
 =======
 
+11.0.0
+------
+
+* Python 3 fixes
+* grenade: start from stein, disable heat integration tests
+* Update TOX/UPPER\_CONSTRAINTS\_FILE for stable/train
+* Update .gitreview for stable/train
+
+11.0.0.0rc1
+-----------
+
+* Update the constraints url
+* Add more cross-functional jobs (TripleO, OSA)
+* Fix unit tests: no more cinderclient v1
+* Fixing broken links and removing outdated driver
+* Update api-ref location
+* Remove a monkey-patching workaround for python < 2.7.3
+* Limit envlist to py37 for Python 3 Train goal
+* Imported Translations from Zanata
+* Imported Translations from Zanata
+* Bump the openstackdocstheme extension to 1.20
+* devstack: do not use configure\_auth\_token\_middleware
+* Blacklist python-cinderclient 4.0.0
+* Remove some files not worth maintaining
+* Update keystone\_authtoken config reference
+* Fix requirements (bandit, sphinx, jsonschema) and jobs
+* Update Python 3 test runtimes for Train
+* Add a required dep to fix the buildimages jobs
+* [Trivial fix]Remove unnecessary slash
+* doc: additional git.openstack.org->opendev.org replacement
+* Replace git.openstack.org URLs with opendev.org URLs
+* OpenDev Migration Patch
+* Dropping the py35 testing
+* Replace openstack.org git:// URLs with https://
+* Imported Translations from Zanata
+* Update master for stable/stein
+
 10.0.0
 ------
 
