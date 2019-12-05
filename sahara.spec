@@ -6,7 +6,7 @@
 #
 Name     : sahara
 Version  : 11.0.0
-Release  : 27
+Release  : 28
 URL      : http://tarballs.openstack.org/sahara/sahara-11.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/sahara/sahara-11.0.0.tar.gz
 Source1  : sahara-all.service
