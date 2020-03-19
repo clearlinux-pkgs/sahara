@@ -6,13 +6,13 @@
 #
 Name     : sahara
 Version  : 11.0.0
-Release  : 29
+Release  : 30
 URL      : http://tarballs.openstack.org/sahara/sahara-11.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/sahara/sahara-11.0.0.tar.gz
 Source1  : sahara-all.service
 Source2  : sahara-api.service
 Source3  : sahara-engine.service
-Source4 : http://tarballs.openstack.org/sahara/sahara-11.0.0.tar.gz.asc
+Source4  : http://tarballs.openstack.org/sahara/sahara-11.0.0.tar.gz.asc
 Summary  : Sahara project
 Group    : Development/Tools
 License  : Apache-2.0
@@ -107,11 +107,8 @@ BuildRequires : stevedore
 BuildRequires : tooz
 
 %description
-Sahara Default Template CLI
-===========================
-The *sahara-templates* application is a simple CLI for managing default
-templates in Sahara. This document gives an overview of default templates
-and explains how to use the CLI.
+Team and repository tags
+        ========================
 
 %package bin
 Summary: bin components for the sahara package.
@@ -153,6 +150,49 @@ python components for the sahara package.
 Summary: python3 components for the sahara package.
 Group: Default
 Requires: python3-core
+Provides: pypi(sahara)
+Requires: pypi(alembic)
+Requires: pypi(babel)
+Requires: pypi(botocore)
+Requires: pypi(castellan)
+Requires: pypi(eventlet)
+Requires: pypi(flask)
+Requires: pypi(iso8601)
+Requires: pypi(jinja2)
+Requires: pypi(jsonschema)
+Requires: pypi(keystoneauth1)
+Requires: pypi(keystonemiddleware)
+Requires: pypi(microversion_parse)
+Requires: pypi(oslo.concurrency)
+Requires: pypi(oslo.config)
+Requires: pypi(oslo.context)
+Requires: pypi(oslo.db)
+Requires: pypi(oslo.i18n)
+Requires: pypi(oslo.log)
+Requires: pypi(oslo.messaging)
+Requires: pypi(oslo.middleware)
+Requires: pypi(oslo.policy)
+Requires: pypi(oslo.rootwrap)
+Requires: pypi(oslo.serialization)
+Requires: pypi(oslo.service)
+Requires: pypi(oslo.upgradecheck)
+Requires: pypi(oslo.utils)
+Requires: pypi(paramiko)
+Requires: pypi(pbr)
+Requires: pypi(python_cinderclient)
+Requires: pypi(python_glanceclient)
+Requires: pypi(python_heatclient)
+Requires: pypi(python_keystoneclient)
+Requires: pypi(python_manilaclient)
+Requires: pypi(python_neutronclient)
+Requires: pypi(python_novaclient)
+Requires: pypi(python_swiftclient)
+Requires: pypi(requests)
+Requires: pypi(six)
+Requires: pypi(sqlalchemy)
+Requires: pypi(stevedore)
+Requires: pypi(tooz)
+Requires: pypi(webob)
 
 %description python3
 python3 components for the sahara package.
@@ -168,14 +208,14 @@ services components for the sahara package.
 
 %prep
 %setup -q -n sahara-11.0.0
+cd %{_builddir}/sahara-11.0.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571241613
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1584644835
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -199,6 +239,12 @@ install -m 0644 %{SOURCE2} %{buildroot}/usr/lib/systemd/system/sahara-api.servic
 install -m 0644 %{SOURCE3} %{buildroot}/usr/lib/systemd/system/sahara-engine.service
 ## install_append content
 install -d -m 755 %{buildroot}/usr/share/defaults
+#install -p -D -m 644 etc/sahara/*.conf %{buildroot}/usr/share/defaults/sahara/
+#install -p -D -m 644 etc/sahara/*.json %{buildroot}/usr/share/defaults/sahara/
+#install -p -D -m 644 etc/sahara/sahara.conf.sample %{buildroot}/usr/share/defaults/sahara/sahara.conf
+#install -p -D -m 644 etc/sahara/compute.topology.sample %{buildroot}/usr/share/defaults/sahara/
+#install -p -D -m 644 etc/sahara/swift.topology.sample %{buildroot}/usr/share/defaults/sahara/
+#install -p -D -m 644 etc/sahara/sahara.conf.sample-basic %{buildroot}/usr/share/defaults/sahara/
 mv %{buildroot}/usr/etc/sahara %{buildroot}/usr/share/defaults/
 rm -rf %{buildroot}/usr/etc
 ## install_append end
